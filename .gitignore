@@ -23,3 +23,7 @@ desktop.ini
 *.db
 *.db-shm
 *.db-wal
+
+# Perfiles de publicacion de Azure (contienen credenciales)
+*.PublishSettings
+*.pubxml.user

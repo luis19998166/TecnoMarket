@@ -1,0 +1,20 @@
+# Salidas de compilación de .NET
+bin/
+obj/
+*.user
+.vs/
+
+# Versiones publicadas (se regeneran con dotnet publish, ver README)
+BlazorPub/publicaciones/
+
+# Copias temporales creadas por lab.mjs durante las pruebas
+sitios/
+
+# Node / Python
+node_modules/
+__pycache__/
+
+# Sistema operativo
+Thumbs.db
+desktop.ini
+.DS_Store

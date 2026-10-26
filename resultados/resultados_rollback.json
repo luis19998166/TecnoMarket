@@ -1,0 +1,137 @@
+{
+  "fecha": "2026-10-26T20:40:52.349Z",
+  "equipo": "Intel Core i7-13650HX, 16 GB RAM, Windows 11 Pro, .NET 9.0.318, Node v26.1.0",
+  "rollback": {
+    "tradicional": [
+      {
+        "rep": 1,
+        "mttrMs": 1804.4186000000009,
+        "total": 27903,
+        "fallidas": 136,
+        "downtimeMs": 3711.342999999999,
+        "p95": 2.0496000000002823
+      },
+      {
+        "rep": 2,
+        "mttrMs": 1716.6026000000002,
+        "total": 29328,
+        "fallidas": 126,
+        "downtimeMs": 3492.3695000000007,
+        "p95": 1.962600000000748
+      },
+      {
+        "rep": 3,
+        "mttrMs": 1746.861399999998,
+        "total": 28838,
+        "fallidas": 127,
+        "downtimeMs": 3584.3138999999974,
+        "p95": 2.0200000000004366
+      },
+      {
+        "rep": 4,
+        "mttrMs": 1756.3840999999993,
+        "total": 29059,
+        "fallidas": 129,
+        "downtimeMs": 3530.440699999999,
+        "p95": 1.9792000000015832
+      },
+      {
+        "rep": 5,
+        "mttrMs": 1768.8941000000013,
+        "total": 29487,
+        "fallidas": 134,
+        "downtimeMs": 3564.3384000000005,
+        "p95": 1.944599999995262
+      }
+    ],
+    "blueGreen": [
+      {
+        "rep": 1,
+        "mttrMs": 0.9191999999966356,
+        "total": 30252,
+        "fallidas": 33,
+        "downtimeMs": 110.48760000000038,
+        "p95": 1.6336000000010245
+      },
+      {
+        "rep": 2,
+        "mttrMs": 2.0262999999977183,
+        "total": 30490,
+        "fallidas": 29,
+        "downtimeMs": 104.69140000000334,
+        "p95": 1.610000000000582
+      },
+      {
+        "rep": 3,
+        "mttrMs": 1.725399999995716,
+        "total": 30578,
+        "fallidas": 73,
+        "downtimeMs": 127.45840000000317,
+        "p95": 1.5953000000008615
+      },
+      {
+        "rep": 4,
+        "mttrMs": 0.7998999999981606,
+        "total": 28503,
+        "fallidas": 31,
+        "downtimeMs": 128.3960999999981,
+        "p95": 2.115799999999581
+      },
+      {
+        "rep": 5,
+        "mttrMs": 4.234700000000885,
+        "total": 29206,
+        "fallidas": 33,
+        "downtimeMs": 105.4823999999935,
+        "p95": 1.9079000000056112
+      }
+    ],
+    "blueGreenConGate": [
+      {
+        "rep": 1,
+        "bloqueado": true,
+        "smokeStatus": 500,
+        "total": 29177,
+        "fallidas": 0,
+        "downtimeMs": 0,
+        "p95": 1.7212999999974272
+      },
+      {
+        "rep": 2,
+        "bloqueado": true,
+        "smokeStatus": 500,
+        "total": 31106,
+        "fallidas": 0,
+        "downtimeMs": 0,
+        "p95": 1.6063999999969383
+      },
+      {
+        "rep": 3,
+        "bloqueado": true,
+        "smokeStatus": 500,
+        "total": 30482,
+        "fallidas": 0,
+        "downtimeMs": 0,
+        "p95": 1.6825000000026193
+      },
+      {
+        "rep": 4,
+        "bloqueado": true,
+        "smokeStatus": 500,
+        "total": 29957,
+        "fallidas": 0,
+        "downtimeMs": 0,
+        "p95": 1.8361999999979162
+      },
+      {
+        "rep": 5,
+        "bloqueado": true,
+        "smokeStatus": 500,
+        "total": 27343,
+        "fallidas": 0,
+        "downtimeMs": 0,
+        "p95": 2.2269999999989523
+      }
+    ]
+  }
+}

@@ -1,0 +1,200 @@
+{
+  "fecha": "2026-10-26T20:38:54.286Z",
+  "equipo": "Intel Core i7-13650HX, 16 GB RAM, Windows 11 Pro, .NET 9.0.318, Node v26.1.0",
+  "deploy": {
+    "tradicional": [
+      {
+        "rep": 1,
+        "version": "v2",
+        "duracionMs": 1890.7024000000001,
+        "total": 38727,
+        "fallidas": 60,
+        "downtimeMs": 1833.7989000000007,
+        "p95": 2.006100000000515
+      },
+      {
+        "rep": 2,
+        "version": "v1",
+        "duracionMs": 1817.745500000001,
+        "total": 36760,
+        "fallidas": 64,
+        "downtimeMs": 1750.9387000000006,
+        "p95": 2.067399999999907
+      },
+      {
+        "rep": 3,
+        "version": "v2",
+        "duracionMs": 1786.1572000000015,
+        "total": 38210,
+        "fallidas": 64,
+        "downtimeMs": 1708.7381000000023,
+        "p95": 2.0115999999998166
+      },
+      {
+        "rep": 4,
+        "version": "v1",
+        "duracionMs": 1814.2898000000023,
+        "total": 39188,
+        "fallidas": 65,
+        "downtimeMs": 1750.9478999999992,
+        "p95": 1.9122999999999593
+      },
+      {
+        "rep": 5,
+        "version": "v2",
+        "duracionMs": 1780.5347999999976,
+        "total": 39417,
+        "fallidas": 64,
+        "downtimeMs": 1733.2298999999985,
+        "p95": 1.8950000000004366
+      },
+      {
+        "rep": 6,
+        "version": "v1",
+        "duracionMs": 1779.8662999999979,
+        "total": 40478,
+        "fallidas": 66,
+        "downtimeMs": 1727.4822999999997,
+        "p95": 1.9310000000004948
+      },
+      {
+        "rep": 7,
+        "version": "v2",
+        "duracionMs": 1764.5008000000016,
+        "total": 40859,
+        "fallidas": 67,
+        "downtimeMs": 1704.8093999999983,
+        "p95": 1.9279000000024098
+      },
+      {
+        "rep": 8,
+        "version": "v1",
+        "duracionMs": 1785.5144,
+        "total": 37865,
+        "fallidas": 80,
+        "downtimeMs": 1705.1546000000017,
+        "p95": 2.031199999997625
+      },
+      {
+        "rep": 9,
+        "version": "v2",
+        "duracionMs": 1796.1399999999994,
+        "total": 39371,
+        "fallidas": 66,
+        "downtimeMs": 1725.4058000000005,
+        "p95": 1.9688999999998487
+      },
+      {
+        "rep": 10,
+        "version": "v1",
+        "duracionMs": 1790.1350999999995,
+        "total": 38685,
+        "fallidas": 70,
+        "downtimeMs": 1723.286,
+        "p95": 1.9890999999988708
+      }
+    ],
+    "blueGreen": [
+      {
+        "rep": 1,
+        "version": "v2",
+        "duracionMs": 1748.0187000000005,
+        "conmutacionMs": 2.9663999999975204,
+        "total": 42251,
+        "fallidas": 0,
+        "downtimeMs": 0,
+        "p95": 1.8496000000013737
+      },
+      {
+        "rep": 2,
+        "version": "v1",
+        "duracionMs": 1772.3785000000062,
+        "conmutacionMs": 3.8439000000071246,
+        "total": 38733,
+        "fallidas": 0,
+        "downtimeMs": 0,
+        "p95": 2.093299999993178
+      },
+      {
+        "rep": 3,
+        "version": "v2",
+        "duracionMs": 1768.6535000000003,
+        "conmutacionMs": 4.173299999994924,
+        "total": 39134,
+        "fallidas": 0,
+        "downtimeMs": 0,
+        "p95": 1.9508000000059837
+      },
+      {
+        "rep": 4,
+        "version": "v1",
+        "duracionMs": 1746.4948999999906,
+        "conmutacionMs": 3.39079999999376,
+        "total": 38873,
+        "fallidas": 0,
+        "downtimeMs": 0,
+        "p95": 2.0540000000037253
+      },
+      {
+        "rep": 5,
+        "version": "v2",
+        "duracionMs": 1972.381600000008,
+        "conmutacionMs": 3.0813000000052853,
+        "total": 38062,
+        "fallidas": 0,
+        "downtimeMs": 0,
+        "p95": 1.9277000000001863
+      },
+      {
+        "rep": 6,
+        "version": "v1",
+        "duracionMs": 1852.1215999999986,
+        "conmutacionMs": 3.091599999999744,
+        "total": 35956,
+        "fallidas": 0,
+        "downtimeMs": 0,
+        "p95": 2.065199999997276
+      },
+      {
+        "rep": 7,
+        "version": "v2",
+        "duracionMs": 1910.102899999998,
+        "conmutacionMs": 3.1964999999909196,
+        "total": 37881,
+        "fallidas": 0,
+        "downtimeMs": 0,
+        "p95": 1.988099999987753
+      },
+      {
+        "rep": 8,
+        "version": "v1",
+        "duracionMs": 1940.859099999987,
+        "conmutacionMs": 3.5943999999872176,
+        "total": 35967,
+        "fallidas": 0,
+        "downtimeMs": 0,
+        "p95": 2.217799999998533
+      },
+      {
+        "rep": 9,
+        "version": "v2",
+        "duracionMs": 1773.8769999999931,
+        "conmutacionMs": 3.182699999990291,
+        "total": 39537,
+        "fallidas": 0,
+        "downtimeMs": 0,
+        "p95": 1.9425000000046566
+      },
+      {
+        "rep": 10,
+        "version": "v1",
+        "duracionMs": 1754.012899999987,
+        "conmutacionMs": 3.1612999999924796,
+        "total": 38559,
+        "fallidas": 0,
+        "downtimeMs": 0,
+        "p95": 2.0657000000064727
+      }
+    ]
+  }
+}

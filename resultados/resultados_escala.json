@@ -1,0 +1,980 @@
+{
+  "fecha": "2026-10-26T20:45:43.467Z",
+  "equipo": "Intel Core i7-13650HX, 16 GB RAM, Windows 11 Pro, .NET 9.0.318, Node v26.1.0",
+  "escala": {
+    "fijo": [
+      {
+        "instancias": 1,
+        "concurrencia": 64,
+        "rps": 1087.9893154736776,
+        "p50": 55.056900000001406,
+        "p95": 91.1843000000008,
+        "errores": 0
+      },
+      {
+        "instancias": 2,
+        "concurrencia": 64,
+        "rps": 2130.1336163592023,
+        "p50": 24.139500000001135,
+        "p95": 59.38220000000001,
+        "errores": 0
+      },
+      {
+        "instancias": 4,
+        "concurrencia": 64,
+        "rps": 3955.589217127995,
+        "p50": 6.024600000004284,
+        "p95": 50.41870000000199,
+        "errores": 0
+      }
+    ],
+    "sinAuto": {
+      "autoescalar": false,
+      "serie": [
+        {
+          "seg": 1,
+          "usuarios": 4,
+          "rps": 989,
+          "p95": 5,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 2,
+          "usuarios": 4,
+          "rps": 943,
+          "p95": 7,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 3,
+          "usuarios": 4,
+          "rps": 961,
+          "p95": 7,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 4,
+          "usuarios": 4,
+          "rps": 880,
+          "p95": 8,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 5,
+          "usuarios": 4,
+          "rps": 1093,
+          "p95": 4,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 6,
+          "usuarios": 4,
+          "rps": 1102,
+          "p95": 4,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 7,
+          "usuarios": 4,
+          "rps": 1111,
+          "p95": 4,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 8,
+          "usuarios": 4,
+          "rps": 1115,
+          "p95": 4,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 9,
+          "usuarios": 4,
+          "rps": 1112,
+          "p95": 4,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 10,
+          "usuarios": 4,
+          "rps": 1119,
+          "p95": 4,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 11,
+          "usuarios": 4,
+          "rps": 1121,
+          "p95": 4,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 12,
+          "usuarios": 4,
+          "rps": 1120,
+          "p95": 4,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 13,
+          "usuarios": 8,
+          "rps": 1125,
+          "p95": 7,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 14,
+          "usuarios": 8,
+          "rps": 1121,
+          "p95": 7,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 15,
+          "usuarios": 8,
+          "rps": 1125,
+          "p95": 7,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 16,
+          "usuarios": 8,
+          "rps": 1122,
+          "p95": 7,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 17,
+          "usuarios": 8,
+          "rps": 1124,
+          "p95": 7,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 18,
+          "usuarios": 8,
+          "rps": 1128,
+          "p95": 8,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 19,
+          "usuarios": 8,
+          "rps": 1132,
+          "p95": 10,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 20,
+          "usuarios": 8,
+          "rps": 1132,
+          "p95": 7,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 21,
+          "usuarios": 8,
+          "rps": 1135,
+          "p95": 9,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 22,
+          "usuarios": 8,
+          "rps": 1135,
+          "p95": 7,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 23,
+          "usuarios": 8,
+          "rps": 1147,
+          "p95": 7,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 24,
+          "usuarios": 8,
+          "rps": 1148,
+          "p95": 8,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 25,
+          "usuarios": 16,
+          "rps": 1140,
+          "p95": 29,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 26,
+          "usuarios": 16,
+          "rps": 1147,
+          "p95": 25,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 27,
+          "usuarios": 16,
+          "rps": 1152,
+          "p95": 36,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 28,
+          "usuarios": 16,
+          "rps": 1152,
+          "p95": 40,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 29,
+          "usuarios": 16,
+          "rps": 1156,
+          "p95": 39,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 30,
+          "usuarios": 16,
+          "rps": 1154,
+          "p95": 35,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 31,
+          "usuarios": 16,
+          "rps": 1157,
+          "p95": 42,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 32,
+          "usuarios": 16,
+          "rps": 1150,
+          "p95": 33,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 33,
+          "usuarios": 16,
+          "rps": 1154,
+          "p95": 38,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 34,
+          "usuarios": 16,
+          "rps": 1153,
+          "p95": 40,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 35,
+          "usuarios": 16,
+          "rps": 1146,
+          "p95": 38,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 36,
+          "usuarios": 16,
+          "rps": 1153,
+          "p95": 33,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 37,
+          "usuarios": 32,
+          "rps": 1151,
+          "p95": 55,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 38,
+          "usuarios": 32,
+          "rps": 1153,
+          "p95": 49,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 39,
+          "usuarios": 32,
+          "rps": 1155,
+          "p95": 49,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 40,
+          "usuarios": 32,
+          "rps": 1172,
+          "p95": 49,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 41,
+          "usuarios": 32,
+          "rps": 1163,
+          "p95": 49,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 42,
+          "usuarios": 32,
+          "rps": 1146,
+          "p95": 50,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 43,
+          "usuarios": 32,
+          "rps": 1152,
+          "p95": 51,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 44,
+          "usuarios": 32,
+          "rps": 1147,
+          "p95": 46,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 45,
+          "usuarios": 32,
+          "rps": 1158,
+          "p95": 49,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 46,
+          "usuarios": 32,
+          "rps": 1161,
+          "p95": 48,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 47,
+          "usuarios": 32,
+          "rps": 1159,
+          "p95": 50,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 48,
+          "usuarios": 32,
+          "rps": 1157,
+          "p95": 54,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 49,
+          "usuarios": 64,
+          "rps": 1179,
+          "p95": 81,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 50,
+          "usuarios": 64,
+          "rps": 1130,
+          "p95": 79,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 51,
+          "usuarios": 64,
+          "rps": 1159,
+          "p95": 77,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 52,
+          "usuarios": 64,
+          "rps": 1163,
+          "p95": 100,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 53,
+          "usuarios": 64,
+          "rps": 1169,
+          "p95": 88,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 54,
+          "usuarios": 64,
+          "rps": 1167,
+          "p95": 81,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 55,
+          "usuarios": 64,
+          "rps": 1189,
+          "p95": 92,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 56,
+          "usuarios": 64,
+          "rps": 1140,
+          "p95": 81,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 57,
+          "usuarios": 64,
+          "rps": 1204,
+          "p95": 79,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 58,
+          "usuarios": 64,
+          "rps": 1151,
+          "p95": 87,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 59,
+          "usuarios": 64,
+          "rps": 1158,
+          "p95": 82,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 60,
+          "usuarios": 64,
+          "rps": 1171,
+          "p95": 82,
+          "instancias": 1,
+          "errores": 0
+        }
+      ],
+      "eventos": []
+    },
+    "conAuto": {
+      "autoescalar": true,
+      "serie": [
+        {
+          "seg": 1,
+          "usuarios": 4,
+          "rps": 1012,
+          "p95": 7,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 2,
+          "usuarios": 4,
+          "rps": 1052,
+          "p95": 5,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 3,
+          "usuarios": 4,
+          "rps": 1017,
+          "p95": 5,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 4,
+          "usuarios": 4,
+          "rps": 900,
+          "p95": 7,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 5,
+          "usuarios": 4,
+          "rps": 1092,
+          "p95": 4,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 6,
+          "usuarios": 4,
+          "rps": 1142,
+          "p95": 4,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 7,
+          "usuarios": 4,
+          "rps": 1139,
+          "p95": 4,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 8,
+          "usuarios": 4,
+          "rps": 1122,
+          "p95": 4,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 9,
+          "usuarios": 4,
+          "rps": 1132,
+          "p95": 4,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 10,
+          "usuarios": 4,
+          "rps": 1136,
+          "p95": 4,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 11,
+          "usuarios": 4,
+          "rps": 1129,
+          "p95": 4,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 12,
+          "usuarios": 4,
+          "rps": 1129,
+          "p95": 4,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 13,
+          "usuarios": 8,
+          "rps": 1124,
+          "p95": 7,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 14,
+          "usuarios": 8,
+          "rps": 1127,
+          "p95": 8,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 15,
+          "usuarios": 8,
+          "rps": 1126,
+          "p95": 7,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 16,
+          "usuarios": 8,
+          "rps": 1126,
+          "p95": 7,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 17,
+          "usuarios": 8,
+          "rps": 1136,
+          "p95": 7,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 18,
+          "usuarios": 8,
+          "rps": 1142,
+          "p95": 7,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 19,
+          "usuarios": 8,
+          "rps": 1124,
+          "p95": 7,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 20,
+          "usuarios": 8,
+          "rps": 1125,
+          "p95": 7,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 21,
+          "usuarios": 8,
+          "rps": 1126,
+          "p95": 7,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 22,
+          "usuarios": 8,
+          "rps": 1120,
+          "p95": 10,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 23,
+          "usuarios": 8,
+          "rps": 1120,
+          "p95": 7,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 24,
+          "usuarios": 8,
+          "rps": 1127,
+          "p95": 14,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 25,
+          "usuarios": 16,
+          "rps": 1112,
+          "p95": 42,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 26,
+          "usuarios": 16,
+          "rps": 1133,
+          "p95": 42,
+          "instancias": 1,
+          "errores": 0
+        },
+        {
+          "seg": 29,
+          "usuarios": 16,
+          "rps": 2277,
+          "p95": 14,
+          "instancias": 2,
+          "errores": 0
+        },
+        {
+          "seg": 30,
+          "usuarios": 16,
+          "rps": 2104,
+          "p95": 14,
+          "instancias": 2,
+          "errores": 0
+        },
+        {
+          "seg": 31,
+          "usuarios": 16,
+          "rps": 2127,
+          "p95": 13,
+          "instancias": 2,
+          "errores": 0
+        },
+        {
+          "seg": 32,
+          "usuarios": 16,
+          "rps": 2149,
+          "p95": 10,
+          "instancias": 2,
+          "errores": 0
+        },
+        {
+          "seg": 33,
+          "usuarios": 16,
+          "rps": 2174,
+          "p95": 9,
+          "instancias": 2,
+          "errores": 0
+        },
+        {
+          "seg": 34,
+          "usuarios": 16,
+          "rps": 2154,
+          "p95": 9,
+          "instancias": 2,
+          "errores": 0
+        },
+        {
+          "seg": 35,
+          "usuarios": 16,
+          "rps": 2142,
+          "p95": 12,
+          "instancias": 2,
+          "errores": 0
+        },
+        {
+          "seg": 36,
+          "usuarios": 16,
+          "rps": 2132,
+          "p95": 11,
+          "instancias": 2,
+          "errores": 0
+        },
+        {
+          "seg": 37,
+          "usuarios": 16,
+          "rps": 2109,
+          "p95": 11,
+          "instancias": 2,
+          "errores": 0
+        },
+        {
+          "seg": 38,
+          "usuarios": 32,
+          "rps": 2095,
+          "p95": 29,
+          "instancias": 2,
+          "errores": 0
+        },
+        {
+          "seg": 39,
+          "usuarios": 32,
+          "rps": 2074,
+          "p95": 32,
+          "instancias": 2,
+          "errores": 0
+        },
+        {
+          "seg": 40,
+          "usuarios": 32,
+          "rps": 2076,
+          "p95": 31,
+          "instancias": 2,
+          "errores": 0
+        },
+        {
+          "seg": 43,
+          "usuarios": 32,
+          "rps": 3216,
+          "p95": 25,
+          "instancias": 3,
+          "errores": 0
+        },
+        {
+          "seg": 44,
+          "usuarios": 32,
+          "rps": 2949,
+          "p95": 25,
+          "instancias": 3,
+          "errores": 0
+        },
+        {
+          "seg": 45,
+          "usuarios": 32,
+          "rps": 2899,
+          "p95": 30,
+          "instancias": 3,
+          "errores": 0
+        },
+        {
+          "seg": 46,
+          "usuarios": 32,
+          "rps": 3021,
+          "p95": 20,
+          "instancias": 3,
+          "errores": 0
+        },
+        {
+          "seg": 47,
+          "usuarios": 32,
+          "rps": 3024,
+          "p95": 24,
+          "instancias": 3,
+          "errores": 0
+        },
+        {
+          "seg": 48,
+          "usuarios": 32,
+          "rps": 2996,
+          "p95": 24,
+          "instancias": 3,
+          "errores": 0
+        },
+        {
+          "seg": 49,
+          "usuarios": 32,
+          "rps": 3041,
+          "p95": 21,
+          "instancias": 3,
+          "errores": 0
+        },
+        {
+          "seg": 50,
+          "usuarios": 64,
+          "rps": 3027,
+          "p95": 34,
+          "instancias": 3,
+          "errores": 0
+        },
+        {
+          "seg": 51,
+          "usuarios": 64,
+          "rps": 3030,
+          "p95": 50,
+          "instancias": 3,
+          "errores": 0
+        },
+        {
+          "seg": 53,
+          "usuarios": 64,
+          "rps": 4327,
+          "p95": 33,
+          "instancias": 4,
+          "errores": 0
+        },
+        {
+          "seg": 54,
+          "usuarios": 64,
+          "rps": 4003,
+          "p95": 44,
+          "instancias": 4,
+          "errores": 0
+        },
+        {
+          "seg": 55,
+          "usuarios": 64,
+          "rps": 4079,
+          "p95": 47,
+          "instancias": 4,
+          "errores": 0
+        },
+        {
+          "seg": 56,
+          "usuarios": 64,
+          "rps": 4094,
+          "p95": 30,
+          "instancias": 4,
+          "errores": 0
+        },
+        {
+          "seg": 57,
+          "usuarios": 64,
+          "rps": 4046,
+          "p95": 44,
+          "instancias": 4,
+          "errores": 0
+        },
+        {
+          "seg": 58,
+          "usuarios": 64,
+          "rps": 4074,
+          "p95": 47,
+          "instancias": 4,
+          "errores": 0
+        },
+        {
+          "seg": 59,
+          "usuarios": 64,
+          "rps": 4085,
+          "p95": 45,
+          "instancias": 4,
+          "errores": 0
+        },
+        {
+          "seg": 60,
+          "usuarios": 64,
+          "rps": 3975,
+          "p95": 50,
+          "instancias": 4,
+          "errores": 0
+        }
+      ],
+      "eventos": [
+        {
+          "seg": 26,
+          "accion": "escala a 2 instancias",
+          "tiempoAprovisionamientoMs": 1857
+        },
+        {
+          "seg": 40,
+          "accion": "escala a 3 instancias",
+          "tiempoAprovisionamientoMs": 1770
+        },
+        {
+          "seg": 51,
+          "accion": "escala a 4 instancias",
+          "tiempoAprovisionamientoMs": 1782
+        }
+      ]
+    }
+  }
+}

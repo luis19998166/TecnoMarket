@@ -23,6 +23,7 @@
 <footer class="tienda-footer">
     <div class="contenedor">
         TecnoMarket · Santa Cruz de la Sierra, Bolivia · Proyecto académico de Programación Web II (UPDS)
+        <div class="version-servidor">Versión @version · servidor <span class="instancia-@instancia">@instancia</span></div>
     </div>
 </footer>
 
@@ -33,6 +34,12 @@
 </div>
 
 @code {
+    // Permite ver qué versión y qué instancia (blue/green) atiende la página durante un despliegue
+    private static readonly string version = typeof(MainLayout).Assembly
+        .GetCustomAttributes(typeof(System.Reflection.AssemblyInformationalVersionAttribute), false)
+        .OfType<System.Reflection.AssemblyInformationalVersionAttribute>().FirstOrDefault()?.InformationalVersion.Split('+')[0] ?? "dev";
+    private static readonly string instancia = Environment.GetEnvironmentVariable("INSTANCIA") ?? "local";
+
     protected override void OnInitialized() => Carrito.Cambio += Refrescar;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

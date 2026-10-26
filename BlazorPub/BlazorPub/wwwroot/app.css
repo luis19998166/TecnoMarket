@@ -46,6 +46,10 @@ h1:focus { outline: none; }
 .badge-carrito { background: #fff; color: var(--verde); border-radius: 999px; min-width: 24px; height: 24px; display: grid; place-items: center; font-size: .8rem; padding: 0 6px; }
 
 .tienda-footer { background: var(--navy); color: #9fb2c5; font-size: .85rem; padding: 18px 0; text-align: center; }
+.version-servidor { margin-top: 4px; font-size: .8rem; }
+.version-servidor span { font-weight: 700; padding: 1px 8px; border-radius: 999px; background: rgba(255, 255, 255, .12); color: #fff; }
+.version-servidor .instancia-blue { background: #1f5fa8; }
+.version-servidor .instancia-green { background: var(--verde); }
 
 /* ---------- Botones ---------- */
 .btn-verde { background: var(--verde); border-color: var(--verde); color: #fff; font-weight: 600; }

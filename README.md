@@ -32,6 +32,15 @@ dotnet run
 ```
 Abrir http://localhost:5083
 
+### Demo blue-green en local (sin Azure)
+```
+cd lab
+node demo.mjs
+```
+Publica la tienda como v1 (blue) y v2 (green), las levanta detrás del proxy y abre http://localhost:5200.
+Teclas: `g` tráfico a green, `b` volver a blue, `s` estado, `q` salir. El pie de página muestra la versión y el servidor.
+Después de cambiar el código, usa `node demo.mjs --rebuild`.
+
 ### Desplegar en Azure
 Ver **[DESPLIEGUE_AZURE.md](DESPLIEGUE_AZURE.md)**: App Service con slot de staging, health check, autoescalado
 y el workflow `.github/workflows/azure-blue-green.yml` (staging → prueba de humo → swap).

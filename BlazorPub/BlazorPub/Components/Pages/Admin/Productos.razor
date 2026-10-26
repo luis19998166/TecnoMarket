@@ -1,0 +1,86 @@
+@page "/admin/productos"
+@inject TiendaService Tienda
+
+<PageTitle>Productos | TecnoMarket</PageTitle>
+<AdminNav />
+
+<div class="barra-acciones">
+    <span class="texto-suave">@(productos?.Count ?? 0) productos · @(productos?.Count(p => p.Stock <= 5) ?? 0) con stock bajo</span>
+    <button class="btn btn-verde btn-sm" @onclick="Nuevo">+ Nuevo producto</button>
+</div>
+
+@if (editando is not null)
+{
+    <EditForm Model="editando" OnValidSubmit="Guardar" class="panel form-producto" FormName="producto">
+        <DataAnnotationsValidator />
+        <h2>@(editando.Id == 0 ? "Nuevo producto" : $"Editar «{editando.Nombre}»")</h2>
+        <div class="campo-doble">
+            <div class="campo"><label>Nombre</label><InputText class="form-control" @bind-Value="editando.Nombre" /><ValidationMessage For="() => editando.Nombre" /></div>
+            <div class="campo"><label>Categoría</label><InputText class="form-control" @bind-Value="editando.Categoria" list="categorias" /><ValidationMessage For="() => editando.Categoria" /></div>
+        </div>
+        <datalist id="categorias">@foreach (var c in categorias) { <option value="@c" /> }</datalist>
+        <div class="campo"><label>Descripción</label><InputTextArea class="form-control" rows="2" @bind-Value="editando.Descripcion" /></div>
+        <div class="campo-triple">
+            <div class="campo"><label>Precio (Bs)</label><InputNumber class="form-control" @bind-Value="editando.Precio" /><ValidationMessage For="() => editando.Precio" /></div>
+            <div class="campo"><label>Stock</label><InputNumber class="form-control" @bind-Value="editando.Stock" /><ValidationMessage For="() => editando.Stock" /></div>
+            <div class="campo"><label>Ícono (emoji)</label><InputText class="form-control" @bind-Value="editando.Icono" /></div>
+        </div>
+        <label class="check"><InputCheckbox @bind-Value="editando.Destacado" /> Mostrar como destacado</label>
+        <div class="acciones-form">
+            <button type="submit" class="btn btn-verde">Guardar</button>
+            <button type="button" class="btn btn-contorno" @onclick="() => editando = null">Cancelar</button>
+        </div>
+    </EditForm>
+}
+
+@if (productos is not null)
+{
+    <div class="panel tabla-scroll">
+        <table class="tabla">
+            <thead><tr><th></th><th>Producto</th><th>Categoría</th><th class="num">Precio</th><th class="num">Stock</th><th></th></tr></thead>
+            <tbody>
+                @foreach (var p in productos)
+                {
+                    <tr @key="p.Id">
+                        <td class="mini-icono">@p.Icono</td>
+                        <td>@p.Nombre @if (p.Destacado) { <span class="etiqueta-mini">Destacado</span> }</td>
+                        <td>@p.Categoria</td>
+                        <td class="num nowrap">@Bs(p.Precio)</td>
+                        <td class="num"><EstadoStock Stock="p.Stock" /> <strong>@p.Stock</strong></td>
+                        <td><button class="btn btn-contorno btn-sm" @onclick="() => Editar(p)">Editar</button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@code {
+    private List<Producto>? productos;
+    private List<string> categorias = new();
+    private Producto? editando;
+
+    protected override async Task OnInitializedAsync() => await Cargar();
+
+    private async Task Cargar()
+    {
+        productos = await Tienda.ProductosAsync();
+        categorias = await Tienda.CategoriasAsync();
+    }
+
+    private void Nuevo() => editando = new Producto { Icono = "📦", Stock = 10 };
+
+    // Se edita una copia para no alterar la tabla hasta guardar
+    private void Editar(Producto p) => editando = new Producto
+    {
+        Id = p.Id, Nombre = p.Nombre, Descripcion = p.Descripcion, Categoria = p.Categoria,
+        Precio = p.Precio, Stock = p.Stock, Icono = p.Icono, Destacado = p.Destacado
+    };
+
+    private async Task Guardar()
+    {
+        await Tienda.GuardarProductoAsync(editando!);
+        editando = null;
+        await Cargar();
+    }
+}

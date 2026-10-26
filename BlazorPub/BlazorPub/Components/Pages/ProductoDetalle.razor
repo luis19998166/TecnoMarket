@@ -1,0 +1,78 @@
+@page "/producto/{Id:int}"
+@inject TiendaService Tienda
+@inject CarritoService Carrito
+
+@if (cargando)
+{
+    <p class="texto-suave">Cargando…</p>
+}
+else if (producto is null)
+{
+    <PageTitle>Producto no encontrado | TecnoMarket</PageTitle>
+    <div class="vacio">
+        <div class="vacio-icono">🤔</div>
+        <p>Este producto no existe o fue retirado.</p>
+        <a href="" class="btn btn-verde">Volver al catálogo</a>
+    </div>
+}
+else
+{
+    <PageTitle>@producto.Nombre | TecnoMarket</PageTitle>
+    <a href="" class="enlace-volver">← Volver al catálogo</a>
+    <div class="detalle">
+        <div class="detalle-imagen cat-@ProductoCard.Clase(producto.Categoria)">
+            <span aria-hidden="true">@producto.Icono</span>
+        </div>
+        <div class="detalle-info">
+            <span class="producto-categoria">@producto.Categoria</span>
+            <h1>@producto.Nombre</h1>
+            <p class="detalle-descripcion">@producto.Descripcion</p>
+            <div class="precio precio-grande">@Bs(producto.Precio)</div>
+            <EstadoStock Stock="producto.Stock" />
+
+            @if (producto.Stock > 0)
+            {
+                <div class="detalle-compra">
+                    <div class="selector-cantidad">
+                        <button @onclick="() => cantidad = Math.Max(1, cantidad - 1)" aria-label="Menos">−</button>
+                        <span>@cantidad</span>
+                        <button @onclick="() => cantidad = Math.Min(producto.Stock, cantidad + 1)" aria-label="Más">+</button>
+                    </div>
+                    <button class="btn btn-verde btn-lg" @onclick="Agregar">Agregar al carrito</button>
+                </div>
+                @if (mensaje is not null)
+                {
+                    <div class="aviso-ok">@mensaje <a href="carrito">Ver carrito →</a></div>
+                }
+            }
+            <ul class="beneficios">
+                <li>🚚 Entrega en 24 h dentro de Santa Cruz</li>
+                <li>🛡️ Garantía de 12 meses</li>
+                <li>💳 Pago con QR, transferencia o contra entrega</li>
+            </ul>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter] public int Id { get; set; }
+    private Producto? producto;
+    private bool cargando = true;
+    private int cantidad = 1;
+    private string? mensaje;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        cargando = true;
+        producto = await Tienda.ProductoAsync(Id);
+        cantidad = 1;
+        mensaje = null;
+        cargando = false;
+    }
+
+    private async Task Agregar()
+    {
+        await Carrito.AgregarAsync(producto!, cantidad);
+        mensaje = $"Se agregó {cantidad} × {producto!.Nombre} al carrito.";
+    }
+}

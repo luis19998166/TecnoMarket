@@ -1,0 +1,109 @@
+@page "/admin"
+@inject TiendaService Tienda
+
+<PageTitle>Reportes | TecnoMarket</PageTitle>
+<AdminNav />
+
+<div class="barra-acciones">
+    <div class="chips">
+        @foreach (var d in new[] { 7, 30, 90 })
+        {
+            <button class="chip @(dias == d ? "activo" : "")" @onclick="() => Cambiar(d)">Últimos @d días</button>
+        }
+    </div>
+    <div class="exportar">
+        <a class="btn btn-contorno btn-sm" href="api/tienda/reportes/pedidos.csv" target="_blank">⬇ Exportar pedidos (CSV)</a>
+        <a class="btn btn-contorno btn-sm" href="api/tienda/reportes/ventas?dias=@dias" target="_blank">{ } API JSON</a>
+    </div>
+</div>
+
+@if (r is null)
+{
+    <p class="texto-suave">Calculando…</p>
+}
+else
+{
+    <div class="kpis">
+        <div class="kpi"><span>Ventas</span><strong>@Bs(r.Total)</strong></div>
+        <div class="kpi"><span>Pedidos</span><strong>@r.Pedidos</strong></div>
+        <div class="kpi"><span>Ticket promedio</span><strong>@Bs(r.TicketPromedio)</strong></div>
+        <div class="kpi"><span>Unidades vendidas</span><strong>@r.Unidades</strong></div>
+        <div class="kpi kpi-alerta"><span>Pendientes de pago</span><strong>@r.PedidosPendientes</strong></div>
+    </div>
+
+    <div class="panel">
+        <h2>Ventas por día (Bs)</h2>
+        @{
+            var max = Math.Max(1m, r.PorDia.Max(x => x.Monto));
+            double ancho = 100.0 / r.PorDia.Count;
+        }
+        <svg class="grafico-dias" viewBox="0 0 100 42" preserveAspectRatio="none" role="img" aria-label="Ventas por día">
+            @for (int i = 0; i < r.PorDia.Count; i++)
+            {
+                var v = r.PorDia[i];
+                double h = (double)(v.Monto / max) * 38;
+                <rect x="@F(i * ancho + ancho * 0.15)" y="@F(40 - h)" width="@F(ancho * 0.7)" height="@F(h)" rx="0.4" class="barra">
+                    <title>@v.Dia.ToString("dd/MM"): @Bs(v.Monto) (@v.Pedidos pedidos)</title>
+                </rect>
+            }
+            <line x1="0" y1="40" x2="100" y2="40" class="eje" />
+        </svg>
+        <div class="eje-x">
+            <span>@r.PorDia.First().Dia.ToString("dd/MM")</span>
+            <span>Máx. diario: @Bs(r.PorDia.Max(x => x.Monto))</span>
+            <span>@r.PorDia.Last().Dia.ToString("dd/MM")</span>
+        </div>
+    </div>
+
+    <div class="dos-columnas">
+        <div class="panel">
+            <h2>Ventas por categoría</h2>
+            @{ var maxCat = Math.Max(1m, r.PorCategoria.Select(x => x.Monto).DefaultIfEmpty(0).Max()); }
+            @foreach (var c in r.PorCategoria)
+            {
+                <div class="barra-h">
+                    <div class="barra-h-etiqueta"><span>@c.Nombre</span><strong>@Bs(c.Monto)</strong></div>
+                    <div class="barra-h-pista"><div class="barra-h-relleno cat-@ProductoCard.Clase(c.Nombre)" style="width:@F((double)(c.Monto / maxCat) * 100)%"></div></div>
+                </div>
+            }
+        </div>
+        <div class="panel">
+            <h2>Productos más vendidos</h2>
+            <table class="tabla">
+                <thead><tr><th>Producto</th><th class="num">Unid.</th><th class="num">Monto</th></tr></thead>
+                <tbody>
+                    @foreach (var t in r.TopProductos)
+                    {
+                        <tr><td>@t.Nombre</td><td class="num">@t.Unidades</td><td class="num">@Bs(t.Monto)</td></tr>
+                    }
+                </tbody>
+            </table>
+            <h2 class="mt-4">Método de pago</h2>
+            <table class="tabla">
+                <tbody>
+                    @foreach (var m in r.PorMetodoPago)
+                    {
+                        <tr><td>@m.Nombre</td><td class="num">@m.Unidades pedidos</td><td class="num">@Bs(m.Monto)</td></tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <p class="texto-suave">No incluye pedidos cancelados. El catálogo y el historial inicial son datos de demostración.</p>
+}
+
+@code {
+    private ResumenVentas? r;
+    private int dias = 30;
+
+    protected override async Task OnInitializedAsync() => r = await Tienda.ReporteAsync(dias);
+
+    private async Task Cambiar(int d)
+    {
+        dias = d;
+        r = await Tienda.ReporteAsync(dias);
+    }
+
+    // SVG necesita punto decimal sin importar la cultura
+    private static string F(double v) => v.ToString("0.###", System.Globalization.CultureInfo.InvariantCulture);
+}

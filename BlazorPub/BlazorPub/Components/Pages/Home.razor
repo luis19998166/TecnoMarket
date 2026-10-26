@@ -1,7 +1,67 @@
 ﻿@page "/"
+@inject TiendaService Tienda
 
-<PageTitle>Home</PageTitle>
+<PageTitle>TecnoMarket | Tecnología en Santa Cruz</PageTitle>
 
-<h1>Hello, world!</h1>
+<section class="hero">
+    <div>
+        <h1>Tecnología que llega a tu puerta</h1>
+        <p>Laptops, celulares, audio y gaming con entrega en Santa Cruz de la Sierra. Paga con QR, transferencia o contra entrega.</p>
+    </div>
+    <div class="hero-iconos" aria-hidden="true">💻 📱 🎧 🎮</div>
+</section>
 
-Welcome to your new app.
+<div class="filtros">
+    <input class="form-control buscador" type="search" placeholder="Buscar productos…" aria-label="Buscar productos"
+           @bind="buscar" @bind:event="oninput" @bind:after="Cargar" />
+    <div class="chips">
+        <button class="chip @(categoria is null ? "activo" : "")" @onclick="() => Filtrar(null)">Todos</button>
+        @foreach (var c in categorias)
+        {
+            <button class="chip @(categoria == c ? "activo" : "")" @onclick="() => Filtrar(c)">@c</button>
+        }
+    </div>
+</div>
+
+@if (productos is null)
+{
+    <p class="texto-suave">Cargando catálogo…</p>
+}
+else if (productos.Count == 0)
+{
+    <div class="vacio">
+        <div class="vacio-icono">🔍</div>
+        <p>No encontramos productos para «@buscar».</p>
+    </div>
+}
+else
+{
+    <p class="texto-suave">@productos.Count productos</p>
+    <div class="grilla-productos">
+        @foreach (var p in productos)
+        {
+            <ProductoCard @key="p.Id" Producto="p" />
+        }
+    </div>
+}
+
+@code {
+    private List<Producto>? productos;
+    private List<string> categorias = new();
+    private string buscar = "";
+    private string? categoria;
+
+    protected override async Task OnInitializedAsync()
+    {
+        categorias = await Tienda.CategoriasAsync();
+        await Cargar();
+    }
+
+    private async Task Filtrar(string? c)
+    {
+        categoria = c;
+        await Cargar();
+    }
+
+    private async Task Cargar() => productos = await Tienda.ProductosAsync(buscar, categoria);
+}

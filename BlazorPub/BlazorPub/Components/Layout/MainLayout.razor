@@ -1,23 +1,46 @@
 ﻿@inherits LayoutComponentBase
+@implements IDisposable
+@inject CarritoService Carrito
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
+<header class="tienda-header">
+    <div class="contenedor header-fila">
+        <a href="" class="marca"><span class="marca-logo">TM</span> <span class="marca-texto">TecnoMarket</span></a>
+        <nav class="nav-principal">
+            <NavLink href="" Match="NavLinkMatch.All">Catálogo</NavLink>
+            <NavLink href="admin">Panel</NavLink>
+        </nav>
+        <a href="carrito" class="btn-carrito" aria-label="Ver carrito">
+            <span aria-hidden="true">🛒</span> <span class="carrito-texto">Carrito</span>
+            <span class="badge-carrito">@Carrito.Unidades</span>
+        </a>
     </div>
+</header>
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
+<main class="contenedor contenido">
+    @Body
+</main>
 
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
-</div>
+<footer class="tienda-footer">
+    <div class="contenedor">
+        TecnoMarket · Santa Cruz de la Sierra, Bolivia · Proyecto académico de Programación Web II (UPDS)
+    </div>
+</footer>
 
 <div id="blazor-error-ui" data-nosnippet>
-    An unhandled error has occurred.
-    <a href="." class="reload">Reload</a>
+    Ocurrió un error inesperado.
+    <a href="." class="reload">Recargar</a>
     <span class="dismiss">🗙</span>
 </div>
+
+@code {
+    protected override void OnInitialized() => Carrito.Cambio += Refrescar;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender) await Carrito.CargarAsync();
+    }
+
+    private void Refrescar() => InvokeAsync(StateHasChanged);
+
+    public void Dispose() => Carrito.Cambio -= Refrescar;
+}

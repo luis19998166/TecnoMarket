@@ -18,3 +18,8 @@ __pycache__/
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# Base de datos local de la tienda
+*.db
+*.db-shm
+*.db-wal

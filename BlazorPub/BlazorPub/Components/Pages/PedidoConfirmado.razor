@@ -1,0 +1,44 @@
+@page "/pedido/{Id:int}"
+@inject TiendaService Tienda
+
+<PageTitle>Pedido #@Id | TecnoMarket</PageTitle>
+
+@if (cargando)
+{
+    <p class="texto-suave">Cargando…</p>
+}
+else if (pedido is null)
+{
+    <div class="vacio"><div class="vacio-icono">🤔</div><p>No encontramos el pedido #@Id.</p></div>
+}
+else
+{
+    <div class="confirmacion panel">
+        <div class="check-grande" aria-hidden="true">✓</div>
+        <h1>¡Gracias, @pedido.Cliente.Split(' ')[0]!</h1>
+        <p>Recibimos tu pedido <strong>#@pedido.Id</strong>. Te escribiremos a @pedido.Email y al @pedido.Telefono para coordinar la entrega.</p>
+        <div class="resumen">
+            @foreach (var it in pedido.Items)
+            {
+                <div class="resumen-fila"><span>@it.Cantidad × @it.NombreProducto</span><span>@Bs(it.Subtotal)</span></div>
+            }
+            <div class="resumen-fila resumen-total"><span>Total</span><span>@Bs(pedido.Total)</span></div>
+        </div>
+        <p class="texto-suave">
+            Método de pago: <strong>@pedido.MetodoPago</strong> · Estado: <span class="estado estado-@pedido.Estado.ToString().ToLower()">@pedido.Estado</span>
+        </p>
+        <a href="" class="btn btn-verde">Seguir comprando</a>
+    </div>
+}
+
+@code {
+    [Parameter] public int Id { get; set; }
+    private Pedido? pedido;
+    private bool cargando = true;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        pedido = await Tienda.PedidoAsync(Id);
+        cargando = false;
+    }
+}

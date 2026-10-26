@@ -1,0 +1,79 @@
+@page "/admin/pedidos"
+@inject TiendaService Tienda
+
+<PageTitle>Pedidos | TecnoMarket</PageTitle>
+<AdminNav />
+
+<div class="barra-acciones">
+    <div class="chips">
+        <button class="chip @(filtro is null ? "activo" : "")" @onclick="() => Filtrar(null)">Todos</button>
+        @foreach (var e in Enum.GetValues<EstadoPedido>())
+        {
+            <button class="chip @(filtro == e ? "activo" : "")" @onclick="() => Filtrar(e)">@e</button>
+        }
+    </div>
+</div>
+
+@if (pedidos is null)
+{
+    <p class="texto-suave">Cargando…</p>
+}
+else
+{
+    <div class="panel tabla-scroll">
+        <table class="tabla">
+            <thead>
+                <tr><th>#</th><th>Fecha</th><th>Cliente</th><th>Productos</th><th>Pago</th><th class="num">Total</th><th>Estado</th></tr>
+            </thead>
+            <tbody>
+                @foreach (var p in pedidos)
+                {
+                    <tr @key="p.Id">
+                        <td><a href="pedido/@p.Id">#@p.Id</a></td>
+                        <td class="nowrap">@HoraBolivia(p.Fecha).ToString("dd/MM HH:mm")</td>
+                        <td>@p.Cliente<br /><span class="texto-suave">@p.Telefono</span></td>
+                        <td class="texto-suave">@string.Join(", ", p.Items.Select(i => $"{i.Cantidad}× {i.NombreProducto}"))</td>
+                        <td>@p.MetodoPago</td>
+                        <td class="num nowrap">@Bs(p.Total)</td>
+                        <td>
+                            <select class="form-select form-select-sm estado-select estado-@p.Estado.ToString().ToLower()" value="@p.Estado"
+                                    @onchange="e => Cambiar(p, e)" aria-label="Estado del pedido @p.Id">
+                                @foreach (var e in Enum.GetValues<EstadoPedido>())
+                                {
+                                    <option value="@e">@e</option>
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @if (pedidos.Count == 0)
+        {
+            <p class="texto-suave p-3">No hay pedidos con este estado.</p>
+        }
+    </div>
+    <p class="texto-suave">@pedidos.Count pedidos · Al cancelar un pedido se devuelve el stock automáticamente.</p>
+}
+
+@code {
+    private List<Pedido>? pedidos;
+    private EstadoPedido? filtro;
+
+    protected override async Task OnInitializedAsync() => pedidos = await Tienda.PedidosAsync(filtro);
+
+    private async Task Filtrar(EstadoPedido? e)
+    {
+        filtro = e;
+        pedidos = await Tienda.PedidosAsync(filtro);
+    }
+
+    private async Task Cambiar(Pedido p, ChangeEventArgs e)
+    {
+        if (Enum.TryParse<EstadoPedido>(e.Value?.ToString(), out var nuevo))
+        {
+            await Tienda.CambiarEstadoAsync(p.Id, nuevo);
+            pedidos = await Tienda.PedidosAsync(filtro);
+        }
+    }
+}

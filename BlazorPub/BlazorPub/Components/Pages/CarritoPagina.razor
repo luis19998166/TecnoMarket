@@ -1,0 +1,53 @@
+@page "/carrito"
+@implements IDisposable
+@inject CarritoService Carrito
+
+<PageTitle>Carrito | TecnoMarket</PageTitle>
+<h1 class="titulo-pagina">Tu carrito</h1>
+
+@if (Carrito.Items.Count == 0)
+{
+    <div class="vacio">
+        <div class="vacio-icono">🛒</div>
+        <p>Tu carrito está vacío.</p>
+        <a href="" class="btn btn-verde">Ver productos</a>
+    </div>
+}
+else
+{
+    <div class="columnas-compra">
+        <div class="panel">
+            @foreach (var it in Carrito.Items)
+            {
+                <div class="fila-carrito" @key="it.ProductoId">
+                    <span class="mini-icono" aria-hidden="true">@it.Icono</span>
+                    <div class="fila-nombre">
+                        <a href="producto/@it.ProductoId">@it.Nombre</a>
+                        <span class="texto-suave">@Bs(it.Precio) c/u</span>
+                    </div>
+                    <div class="selector-cantidad selector-chico">
+                        <button @onclick="() => Carrito.CambiarCantidadAsync(it.ProductoId, it.Cantidad - 1)" aria-label="Menos">−</button>
+                        <span>@it.Cantidad</span>
+                        <button @onclick="() => Carrito.CambiarCantidadAsync(it.ProductoId, it.Cantidad + 1)" aria-label="Más">+</button>
+                    </div>
+                    <strong class="fila-subtotal">@Bs(it.Subtotal)</strong>
+                    <button class="btn-quitar" @onclick="() => Carrito.CambiarCantidadAsync(it.ProductoId, 0)" aria-label="Quitar">✕</button>
+                </div>
+            }
+        </div>
+        <aside class="panel resumen">
+            <h2>Resumen</h2>
+            <div class="resumen-fila"><span>Productos (@Carrito.Unidades)</span><span>@Bs(Carrito.Total)</span></div>
+            <div class="resumen-fila"><span>Envío</span><span class="texto-verde">Gratis</span></div>
+            <div class="resumen-fila resumen-total"><span>Total</span><span>@Bs(Carrito.Total)</span></div>
+            <a href="checkout" class="btn btn-verde w-100 btn-lg">Continuar compra</a>
+            <a href="" class="enlace-volver d-block text-center mt-2">Seguir comprando</a>
+        </aside>
+    </div>
+}
+
+@code {
+    protected override void OnInitialized() => Carrito.Cambio += Refrescar;
+    private void Refrescar() => InvokeAsync(StateHasChanged);
+    public void Dispose() => Carrito.Cambio -= Refrescar;
+}

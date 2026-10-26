@@ -1,0 +1,103 @@
+@page "/checkout"
+@implements IDisposable
+@inject CarritoService Carrito
+@inject TiendaService Tienda
+@inject NavigationManager Nav
+
+<PageTitle>Finalizar compra | TecnoMarket</PageTitle>
+<h1 class="titulo-pagina">Finalizar compra</h1>
+
+@if (Carrito.Items.Count == 0)
+{
+    <div class="vacio">
+        <div class="vacio-icono">🛒</div>
+        <p>No hay productos para comprar.</p>
+        <a href="" class="btn btn-verde">Ver productos</a>
+    </div>
+}
+else
+{
+    <div class="columnas-compra">
+        <EditForm Model="datos" OnValidSubmit="Confirmar" class="panel" FormName="checkout">
+            <DataAnnotationsValidator />
+            <h2>Datos de entrega</h2>
+            <div class="campo">
+                <label for="cliente">Nombre completo</label>
+                <InputText id="cliente" class="form-control" @bind-Value="datos.Cliente" autocomplete="name" />
+                <ValidationMessage For="() => datos.Cliente" />
+            </div>
+            <div class="campo-doble">
+                <div class="campo">
+                    <label for="email">Correo electrónico</label>
+                    <InputText id="email" class="form-control" @bind-Value="datos.Email" autocomplete="email" />
+                    <ValidationMessage For="() => datos.Email" />
+                </div>
+                <div class="campo">
+                    <label for="tel">Teléfono / WhatsApp</label>
+                    <InputText id="tel" class="form-control" @bind-Value="datos.Telefono" autocomplete="tel" />
+                    <ValidationMessage For="() => datos.Telefono" />
+                </div>
+            </div>
+            <div class="campo">
+                <label for="dir">Dirección de entrega</label>
+                <InputText id="dir" class="form-control" @bind-Value="datos.Direccion" placeholder="Barrio, calle, número y referencia" />
+                <ValidationMessage For="() => datos.Direccion" />
+            </div>
+
+            <h2>Método de pago</h2>
+            <InputRadioGroup @bind-Value="datos.MetodoPago">
+                <div class="opciones-pago">
+                    <label class="opcion-pago"><InputRadio Value="MetodoPago.QR" /> <span>📲 Pago con QR</span></label>
+                    <label class="opcion-pago"><InputRadio Value="MetodoPago.Transferencia" /> <span>🏦 Transferencia bancaria</span></label>
+                    <label class="opcion-pago"><InputRadio Value="MetodoPago.ContraEntrega" /> <span>💵 Contra entrega</span></label>
+                </div>
+            </InputRadioGroup>
+            <p class="texto-suave">Proyecto académico: no se realizan cobros reales.</p>
+
+            @if (error is not null)
+            {
+                <div class="aviso-error">@error</div>
+            }
+            <button type="submit" class="btn btn-verde btn-lg w-100" disabled="@enviando">
+                @(enviando ? "Procesando…" : $"Confirmar pedido · {Bs(Carrito.Total)}")
+            </button>
+        </EditForm>
+
+        <aside class="panel resumen">
+            <h2>Tu pedido</h2>
+            @foreach (var it in Carrito.Items)
+            {
+                <div class="resumen-fila"><span>@it.Cantidad × @it.Nombre</span><span>@Bs(it.Subtotal)</span></div>
+            }
+            <div class="resumen-fila"><span>Envío</span><span class="texto-verde">Gratis</span></div>
+            <div class="resumen-fila resumen-total"><span>Total</span><span>@Bs(Carrito.Total)</span></div>
+        </aside>
+    </div>
+}
+
+@code {
+    private DatosCompra datos = new();
+    private string? error;
+    private bool enviando;
+
+    protected override void OnInitialized() => Carrito.Cambio += Refrescar;
+
+    private async Task Confirmar()
+    {
+        if (enviando) return;
+        enviando = true;
+        error = null;
+        var (pedido, err) = await Tienda.CrearPedidoAsync(datos, Carrito.Items);
+        if (pedido is null)
+        {
+            error = err;
+            enviando = false;
+            return;
+        }
+        await Carrito.VaciarAsync();
+        Nav.NavigateTo($"pedido/{pedido.Id}");
+    }
+
+    private void Refrescar() => InvokeAsync(StateHasChanged);
+    public void Dispose() => Carrito.Cambio -= Refrescar;
+}

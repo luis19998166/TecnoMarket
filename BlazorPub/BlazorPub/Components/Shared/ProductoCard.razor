@@ -1,0 +1,40 @@
+@inject CarritoService Carrito
+
+<article class="tarjeta-producto">
+    <a href="producto/@Producto.Id" class="producto-imagen cat-@Clase(Producto.Categoria)">
+        <span class="producto-icono" aria-hidden="true">@Producto.Icono</span>
+        @if (Producto.Destacado)
+        {
+            <span class="etiqueta-destacado">Destacado</span>
+        }
+    </a>
+    <div class="producto-cuerpo">
+        <span class="producto-categoria">@Producto.Categoria</span>
+        <a href="producto/@Producto.Id" class="producto-nombre">@Producto.Nombre</a>
+        <EstadoStock Stock="Producto.Stock" />
+        <div class="producto-pie">
+            <span class="precio">@Bs(Producto.Precio)</span>
+            <button class="btn btn-verde btn-sm" disabled="@(Producto.Stock == 0 || agregado)" @onclick="Agregar">
+                @(agregado ? "✓ Agregado" : "Agregar")
+            </button>
+        </div>
+    </div>
+</article>
+
+@code {
+    [Parameter, EditorRequired] public Producto Producto { get; set; } = default!;
+    private bool agregado;
+
+    public static string Clase(string categoria) => categoria.ToLowerInvariant() switch
+    {
+        "laptops" => "laptops", "celulares" => "celulares", "audio" => "audio", "gaming" => "gaming", _ => "accesorios"
+    };
+
+    private async Task Agregar()
+    {
+        await Carrito.AgregarAsync(Producto);
+        agregado = true;
+        await Task.Delay(1200);
+        agregado = false;
+    }
+}
